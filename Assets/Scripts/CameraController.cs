@@ -2,24 +2,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] GameObject player;
     Camera mainCamera;
 
     void LateUpdate()
     {
-        if (player.transform.position.y > transform.position.y) {
-            transform.position = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
-        }
+        var position = transform.position;
+        position.y = Mathf.Max(PlayerController.Instance.transform.position.y, position.y);
+        transform.position = position;
     }
 
     public Bounds OrthographicBounds()
     {
-        var screenAspect = Screen.width / (float)Screen.height;
         if (mainCamera == null) {
-            // ReSharper disable once Unity.PerformanceCriticalCodeCameraMain
             mainCamera = Camera.main;
         }
 
+        var screenAspect = Screen.width / (float)Screen.height;
         var cameraHeight = mainCamera.orthographicSize * 2;
         var bounds = new Bounds(
             transform.position,

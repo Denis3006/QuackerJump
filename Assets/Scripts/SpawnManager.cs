@@ -11,16 +11,13 @@ public enum PlatformType
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] GameObject player;
     CameraController cameraController;
     ObjectPooler objectPooler;
-    PlayerController playerController;
     Dictionary<PlatformType, int> typeWeights;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerController = player.GetComponent<PlayerController>();
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
         objectPooler = GameObject.Find("GameManager").GetComponent<ObjectPooler>();
         typeWeights = new Dictionary<PlatformType, int>
@@ -50,7 +47,7 @@ public class SpawnManager : MonoBehaviour
         newPlatform.GetComponent<Platform>().platformType = platformType;
 
         float xCenter = 0;
-        var jumpVelocity = playerController.jumpVelocity;
+        var jumpVelocity = PlayerController.Instance.jumpVelocity;
         var yMin = cameraBounds.min.y;
         var yMax = cameraBounds.min.y + 3;
 
@@ -63,10 +60,10 @@ public class SpawnManager : MonoBehaviour
                 jumpVelocity /= Platform.SlowingFactor;
             }
 
-            yMax = highestPlatformPos.y + playerController.JumpHeight(jumpVelocity) * 0.8f;
+            yMax = highestPlatformPos.y + PlayerController.Instance.JumpHeight(jumpVelocity) * 0.8f;
 
             xCenter = highestPlatformPos.x;
-            var jumpDistance = playerController.JumpDistance(jumpVelocity) * 0.8f;
+            var jumpDistance = PlayerController.Instance.JumpDistance(jumpVelocity) * 0.8f;
             xMin = Mathf.Max(xCenter - Platform.PlatformWidth / 2 - jumpDistance,
                 cameraBounds.min.x + Platform.PlatformWidth / 2);
             xMax = Mathf.Min(xCenter + Platform.PlatformWidth / 2 + jumpDistance,

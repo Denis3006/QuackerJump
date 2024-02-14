@@ -366,9 +366,6 @@ MonoBehaviour:
   movementSpeed: 15
   gravity: 40
   jumpVelocity: 20
-  jumpSound: {fileID: 8300000, guid: f914e50a3b37d514d9a60ee368b5846d, type: 3}
-  gameOverSound: {fileID: 8300000, guid: 86aedda2852fabd4b89150da22af0c05, type: 3}
-  newHighscoreSound: {fileID: 8300000, guid: 299522f79282afa4b9e8ca085838a908, type: 3}
   leftBound: 0
   rightBound: 0
 --- !u!1 &88092746
@@ -842,6 +839,7 @@ RectTransform:
   - {fileID: 1378721386}
   - {fileID: 1594463981}
   - {fileID: 1376507687}
+  - {fileID: 829859859}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -955,7 +953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79da35efe120d542bc1054052d55708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 12060337}
 --- !u!1 &735401424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88cc477ab0b2bd4f96a97f52b6b2c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 12060337}
 --- !u!114 &735401428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,14 +1011,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5499a66b25d13504d8fa83c84d80f68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 1281169220}
-  highscoreText: {fileID: 1255008331}
-  gameOverText: {fileID: 1378721387}
   highscoreLine: {fileID: 1333641796}
   cam: {fileID: 519420031}
   player: {fileID: 12060337}
-  restartButton: {fileID: 1594463982}
-  unpauseButton: {fileID: 800995696}
   score: 0
   highscore: 0
   isGameOver: 0
@@ -1108,8 +1099,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 735401428}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 829859860}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: UnpauseGame
         m_Mode: 1
         m_Arguments:
@@ -1280,6 +1271,201 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &829859858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 829859859}
+  - component: {fileID: 829859860}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &829859859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829859858}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 443217028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &829859860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829859858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a718955531767743a63d2716a3daa18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivitySlider: {fileID: 0}
+  volumeSlider: {fileID: 0}
+  scoreText: {fileID: 1281169220}
+  highscoreText: {fileID: 1255008331}
+  gameOverText: {fileID: 1378721387}
+  restartButton: {fileID: 1594463982}
+  unpauseButton: {fileID: 800995696}
+--- !u!1 &1109894358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1109894361}
+  - component: {fileID: 1109894360}
+  - component: {fileID: 1109894359}
+  m_Layer: 0
+  m_Name: SoundHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1109894359
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109894358}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.701
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1109894360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109894358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df012d99f954d5844a718e99cb33af43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverSound: {fileID: 8300000, guid: 86aedda2852fabd4b89150da22af0c05, type: 3}
+  newHighscoreSound: {fileID: 8300000, guid: 299522f79282afa4b9e8ca085838a908, type: 3}
+  jumpSound: {fileID: 8300000, guid: f914e50a3b37d514d9a60ee368b5846d, type: 3}
+--- !u!4 &1109894361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109894358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1255008329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,8 +2016,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 735401428}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 829859860}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
@@ -2310,3 +2496,4 @@ SceneRoots:
   - {fileID: 332700597}
   - {fileID: 1333641798}
   - {fileID: 443217028}
+  - {fileID: 1109894361}

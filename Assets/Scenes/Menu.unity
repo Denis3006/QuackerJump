@@ -360,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79da35efe120d542bc1054052d55708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!81 &245187249
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1222,7 +1221,7 @@ GameObject:
   - component: {fileID: 1147354686}
   - component: {fileID: 1147354685}
   m_Layer: 0
-  m_Name: MainMenuManager
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1242,7 +1241,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivitySlider: {fileID: 479847991}
   volumeSlider: {fileID: 111491020}
-  startButton: {fileID: 471975437}
+  scoreText: {fileID: 0}
+  highscoreText: {fileID: 0}
+  gameOverText: {fileID: 0}
+  restartButton: {fileID: 0}
+  unpauseButton: {fileID: 0}
 --- !u!4 &1147354686
 Transform:
   m_ObjectHideFlags: 0

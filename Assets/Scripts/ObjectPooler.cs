@@ -13,7 +13,6 @@ public class ObjectPooler : MonoBehaviour
         startingIndices = new Dictionary<PlatformType, int>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         // Loop through list of pooled objects,deactivating them and adding them to the list 

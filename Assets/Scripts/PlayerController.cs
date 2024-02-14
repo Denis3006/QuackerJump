@@ -1,28 +1,26 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    public static readonly UnityEvent OnJump = new();
     [SerializeField] float movementSpeed;
     [SerializeField] float gravity;
     public float jumpVelocity;
-    public AudioClip jumpSound;
-    public AudioClip gameOverSound;
-    public AudioClip newHighscoreSound;
     public float leftBound, rightBound;
-    AudioSource audioSource;
     bool facingRight = true;
     float playerWidth;
     SpriteRenderer spriteRenderer;
     Vector2 velocity = new(0, 0);
+    public static PlayerController Instance { get; private set; }
 
-    // Start is called before the first frame update
+
     void Start()
     {
+        Instance = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
         movementSpeed *= PlayerPrefs.GetFloat("sensitivity", 0.7f);
         GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("volume", 0.5f);
-        ;
         if (SystemInfo.supportsGyroscope) {
             Input.gyro.enabled = true;
         }
@@ -33,7 +31,7 @@ public class PlayerController : MonoBehaviour
         rightBound = cameraBounds.max.x;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         var xVelocity = SystemInfo.supportsGyroscope
@@ -70,7 +68,7 @@ public class PlayerController : MonoBehaviour
     void Jump(float jumpVel)
     {
         velocity.y = jumpVel;
-        audioSource.PlayOneShot(jumpSound, 0.75f);
+        OnJump.Invoke();
     }
 
     void HandleMovement()
