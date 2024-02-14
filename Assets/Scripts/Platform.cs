@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,13 +9,15 @@ public class Platform : MonoBehaviour
     public const float SlowingFactor = 1.4f;
     public PlatformType platformType;
     public float platformSpeed = 1f;
+    [SerializeField] GameObject[] powerUps;
+    public bool broken;
     CameraController cameraController;
     float moveDistance;
     float movingOffset;
 
-
     void Start()
     {
+        broken = false;
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
         moveDistance = cameraController.OrthographicBounds().max.x - PlatformWidth / 2;
         if (platformType == PlatformType.Moving) {
@@ -33,5 +36,19 @@ public class Platform : MonoBehaviour
         if (transform.position.y < cameraController.OrthographicBounds().min.y) {
             gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator PlayBreakingAnimation()
+    {
+        GetComponentInChildren<Animator>().SetBool("isPlatformBroken", true);
+        yield return new WaitForSeconds(2);
+        broken = false;
+        gameObject.SetActive(false);
+    }
+
+    public void BreakPlatform()
+    {
+        broken = true;
+        StartCoroutine(PlayBreakingAnimation());
     }
 }

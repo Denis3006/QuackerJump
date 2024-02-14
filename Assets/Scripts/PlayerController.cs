@@ -43,10 +43,10 @@ public class PlayerController : MonoBehaviour
         if (velocity.y <= 0) {
             Vector2 rayOrigin = transform.position - new Vector3(0, playerWidth / 2, 0);
             var hit = Physics2D.BoxCast(rayOrigin, new Vector2(playerWidth, 0.1f), 0, -transform.up, 0.2f);
-            if (hit.collider != null) {
+            if (hit.collider != null && !hit.collider.gameObject.GetComponent<Platform>().broken) {
                 var jumpVel = jumpVelocity;
                 if (hit.collider.CompareTag(PlatformType.Fragile.ToString())) {
-                    hit.collider.gameObject.SetActive(false);
+                    hit.collider.gameObject.GetComponent<Platform>().BreakPlatform();
                 }
                 else if (hit.collider.CompareTag(PlatformType.Slowing.ToString())) {
                     jumpVel /= Platform.SlowingFactor;
